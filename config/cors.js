@@ -1,4 +1,4 @@
-const whitelist = ['http://localhost:3001', 'https://samuelfox1.github.io']
+const whitelist = ['http://localhost:3001', 'https://samuelfox1.github']
 const corsOptions = {
     origin: function (origin, callback) {
         if (whitelist.indexOf(origin) !== -1 || !origin) {
