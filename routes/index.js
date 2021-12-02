@@ -3,11 +3,9 @@ const { sendEmail } = require('../utils')
 const router = require('express').Router()
 
 
-router.post('/email', async (req, res) => {
+router.post('/email', async ({ body }, res) => {
     try {
-        const { destination, action, subject, body } = req.body
-
-        const response = await sendEmail(destination, action, subject, body)
+        const { response } = await sendEmail(body)
 
         res.json({ response })
 

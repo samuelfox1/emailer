@@ -3,11 +3,11 @@ require('dotenv').config()
 
 
 module.exports = {
-    sendEmail: (destination, subject = 'Sent using Node.js', action = 'text', body = 'hello world') => {
+    sendEmail: (details) => {
 
         return new Promise(async (resolve, reject) => {
-
             try {
+                const { destination, subject, renderAs, body } = details
                 const transporter = nodemailer.createTransport({
                     service: 'yahoo',
                     auth: {
@@ -19,10 +19,8 @@ module.exports = {
                 const mailOptions = {
                     from: process.env.DEV_EMAIL,
                     to: destination,
-                    [action]: body,
-                    subject,
-                    // text: 'Super Easy!',
-                    // html: '<h1>hello world</h1>'
+                    subject: subject ? subject : 'hello from node.js',
+                    [renderAs ? renderAs : 'text']: body ? body : "<h1>hello world</h1> <br> <a href='https://samuelfox1.github.io/emailer-client/'>try it out</a>",
                 };
 
                 transporter.sendMail(mailOptions, (error, info) => {
