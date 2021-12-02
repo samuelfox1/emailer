@@ -5,13 +5,14 @@ const router = require('express').Router()
 
 router.post('/email', async (req, res) => {
     try {
-        const { destination, action, subject, body } = body
+        const { destination, action, subject, body } = req.body
 
-        await sendEmail(destination, action, subject, body)
+        const response = await sendEmail(destination, action, subject, body)
 
-        res.json({ msg: 'This is CORS-enabled for an allowed domain.' })
+        res.json({ response })
 
     } catch (error) {
+        console.error(error)
         res.status(500).json(error)
     }
 })
