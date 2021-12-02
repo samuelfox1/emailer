@@ -4,7 +4,7 @@ const app = express()
 
 const PORT = process.env.PORT || 3001;
 
-const allowedOrigins = ['http://localhost:3001', 'https://samuelfox1.github']
+const allowedOrigins = ['http://localhost:3001', 'https://samuelfox1.github.io']
 app.use(cors({
     origin: function (origin, callback) {
         // allow requests with no origin 
